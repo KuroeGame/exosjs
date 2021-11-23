@@ -3,6 +3,7 @@
 //déclaration des var
 let choix;
 let choixpc;
+let message;
 
 //affectation de valeur
 
@@ -31,24 +32,45 @@ if (choixpc < 0.33) {
 }
 
 const DIV = document.querySelector("#content");
-DIV.innerHTML = `<ul>
-                    <li><figure><img src="img/${choix}.png" width="100"><figcaption>Vous</figcaption></figure></li>
-                    <li><figure><img src="img/${choixpc}.png" width="100"><figcaption>L'ordinateur</figcaption></figure></li>
-                </ul>`;
 
-if (choixpc === choix) {
-    DIV.innerHTML = DIV.innerHTML + `<p>Egalité</p>`;
-} else if((choix == "pierre")&&(choixpc == "feuille")){
-    DIV.innerHTML = DIV.innerHTML + `<p>La feuille recouvre la pierre : vous perdez !</p>`;
-}else if((choix == "pierre")&&(choixpc == "ciseau")){
-    DIV.innerHTML = DIV.innerHTML + `<p>La pierre casse les ciseaux : vous gagnez !</p>`;
-}else if((choix == "feuille")&&(choixpc == "pierre")){
-    DIV.innerHTML = DIV.innerHTML + `<p>La feuille recouvre la pierre : vous gagnez !</p>`;
-}else if((choix == "feuille")&&(choixpc == "ciseau")){
-    DIV.innerHTML = DIV.innerHTML + `<p>Les ciseaux coupent la feuille: vous perdez !</p>`;
-}else if((choix == "ciseau")&&(choixpc == "pierre")){
-    DIV.innerHTML = DIV.innerHTML + `<p>La pierre casse les ciseaux : vous perdez !</p>`;
+if(choix === choixpc){
+    message = "Il y a égalité !";
 }else{
-    DIV.innerHTML = DIV.innerHTML + `<p>Les ciseaux coupent la feuille: vous gagnez !</p>`;
+    switch(choix){
+        case "pierre":
+            if (choixpc === "feuille") {
+                message = "La feuille recouvre la pierre : vous perdez !";
+            } else {
+                message = "La pierre casse les ciseaux : vous gagnez !";
+            }
+        break;
+        case "feuille":
+            if (choixpc === "ciseau") {
+                message = "Les ciseaux coupent la feuille: vous perdez !";
+            } else {
+                message = "La feuille recouvre la pierre : vous gagnez !";
+            }
+        break;
+        case "ciseau":
+            if (choixpc === "pierre") {
+                message = "La pierre casse les ciseaux : vous perdez !";
+            } else {
+                message = "Les ciseaux coupent la feuille: vous gagnez !";
+            }
+        break;
+    }
 }
 
+
+
+DIV.innerHTML = `<ul>
+                    <li>
+                        <img src="img/${choix}.png" width="100">
+                        <p>Vous</p>
+                    </li>
+                    <li>
+                        <img src="img/${choixpc}.png" width="100">
+                        <p>L'ordinateur</p>
+                    </li>
+                </ul>
+                <p>${message}</p>`;
