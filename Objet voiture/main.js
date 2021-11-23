@@ -9,6 +9,7 @@ let myCar = {
 };
 
 
+
 document.querySelector("#content");
 const DIV = document.querySelector("#content");
 let content = DIV.innerHTML;
