@@ -1,26 +1,19 @@
 "use strict";
 
 //déclaration des var
-let choix =  window.prompt("Que choisisez-vous : pierre, feuille ou ciseau ?");
+let choix;
 let choixpc;
 
 //affectation de valeur
-choix = choix.toLowerCase();
 
-switch(choix){
-	case "pierre":
-		console.log("pierre");
-		break;
-	case "feuille":
-		console.log("feuille");
-		break;
-	case "ciseau":
-		console.log("ciseau");
-		break;
-	default:
-		console.log("Veuillez actualiser la page");
-		break;
-}
+do {
+    choix = window.prompt("Que choisisez-vous : pierre, feuille ou ciseau ?").toLowerCase();
+} while (
+    choix != "pierre" &&
+    choix != "feuille" &&
+    choix != "ciseau"
+);
+
 
 function getRandom() {
     return Math.random();
@@ -31,9 +24,9 @@ console.log(choixpc);
 
 if (choixpc < 0.33) {
     choixpc = "pierre";
-} else if((choixpc > 0.33)||(choixpc < 0.66)){
+}else if((choixpc > 0.33)||(choixpc < 0.66)){
     choixpc = "feuille";
-}else if(choixpc > 0.66){
+}else{
     choixpc = "ciseau";
 }
 
@@ -55,7 +48,7 @@ if (choixpc === choix) {
     DIV.innerHTML = DIV.innerHTML + `<p>Les ciseaux coupent la feuille: vous perdez !</p>`;
 }else if((choix == "ciseau")&&(choixpc == "pierre")){
     DIV.innerHTML = DIV.innerHTML + `<p>La pierre casse les ciseaux : vous perdez !</p>`;
-}else if((choix == "ciseau")&&(choixpc == "feuille")){
+}else{
     DIV.innerHTML = DIV.innerHTML + `<p>Les ciseaux coupent la feuille: vous gagnez !</p>`;
 }
 

@@ -34,9 +34,8 @@ let date = today.getDate();
 let hour = today.getHours();
 let min = today.getMinutes();
 
-document.querySelector("#content");
+
 const DIV = document.querySelector("#content");
-let content = DIV.innerHTML;
 DIV.innerHTML = `<p>Nous sommes le ${weekDays[dayIndex]} ${date} ${month[monthIndex]} ${year}</p>
 <p>à ${hour}h${min}</p>`;
 
