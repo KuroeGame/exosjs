@@ -7,37 +7,38 @@
 let pictures = document.querySelectorAll("li");
 let select = document.querySelector("#selectAll").addEventListener("click", onClickSelectAll);
 let unselect = document.querySelector("#deselectAll").addEventListener("click", onClickUnselectAll);
+let count = 0;
 
 
 /*****************
  * FONCTIONS
 *****************/
 
+function displayCount(){
+    let text = document.querySelector("#total em");
+    text.innerHTML = `${count}`;
+}
+
 function onClickListItem(){
     this.classList.toggle("selected");
-    countPictureSelected();
+    if (this.classList.contains("selected")) {
+        count++;
+    } else {
+        count--;
+    }
+    displayCount();
 }
 
 function onClickSelectAll(){
-    let pictures = document.querySelectorAll("li");
     pictures.forEach((li) => li.classList.add("selected"));
-    countPictureSelected();
+    count = pictures.length;
+    displayCount();
 }
 
 function onClickUnselectAll(){
-    let pictures = document.querySelectorAll("li");
     pictures.forEach((li) => li.classList.remove("selected"));
-    countPictureSelected();
-}
-
-function countPictureSelected(){
-    let text = document.querySelector("#total em");
-    let count = 0;
-    for(let picture of pictures){
-        if(picture.classList.contains("selected")){
-            count += 1;
-        }
-    }text.innerHTML = `${count}`;
+    count = 0;
+    displayCount();
 }
 
 /*****************
