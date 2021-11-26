@@ -20,7 +20,6 @@ for (let row = 1; row <= size; row++) {
     }
     startTable += "</tr>";
 }
-  
 
 startTable += "</tbody></table>";
 
