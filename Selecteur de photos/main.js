@@ -4,40 +4,30 @@
  * VARIABLES
 *****************/
 
-let pictures = document.querySelectorAll("li");
-let select = document.querySelector("#selectAll").addEventListener("click", onClickSelectAll);
-let unselect = document.querySelector("#deselectAll").addEventListener("click", onClickUnselectAll);
-let count = 0;
-
+let pictures = $("li");
+let select = $("#selectAll").on("click", onClickSelectAll);
+let unselect = $("#deselectAll").on("click", onClickUnselectAll);
 
 /*****************
  * FONCTIONS
 *****************/
 
 function displayCount(){
-    let text = document.querySelector("#total em");
-    text.innerHTML = `${count}`;
+    $("#total em").text($(".selected").length);
 }
 
 function onClickListItem(){
-    this.classList.toggle("selected");
-    if (this.classList.contains("selected")) {
-        count++;
-    } else {
-        count--;
-    }
+    $(this).toggleClass("selected");
     displayCount();
 }
 
 function onClickSelectAll(){
-    pictures.forEach((li) => li.classList.add("selected"));
-    count = pictures.length;
+    pictures.addClass("selected");
     displayCount();
 }
 
 function onClickUnselectAll(){
-    pictures.forEach((li) => li.classList.remove("selected"));
-    count = 0;
+    pictures.removeClass("selected");
     displayCount();
 }
 
@@ -45,4 +35,4 @@ function onClickUnselectAll(){
  * CODE GENERALE
 *****************/
 
-pictures.forEach((picture) => picture.addEventListener("click", onClickListItem));
+pictures.click(onClickListItem); //reduction max du gestionnaire d'évènement
